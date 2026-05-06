@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import LandingPage from './pages/LandingPage';
 import FormPage from './pages/FormPage';
 import SuccessPage from './pages/SuccessPage';
-import { submitLead } from './services/submissionService';
+import { submitLead, syncPendingLeads } from './services/submissionService';
 import './styles/global.css';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('landing');
   const [selectedFormType, setSelectedFormType] = useState(null);
+
+  // Background Sync: Attempt to sync any pending leads when the app loads
+  useEffect(() => {
+    syncPendingLeads();
+  }, []);
 
   const handleSelectPath = (formType) => {
     setSelectedFormType(formType);
