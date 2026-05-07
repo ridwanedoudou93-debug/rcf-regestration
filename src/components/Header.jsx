@@ -5,13 +5,14 @@ import Logo from './Logo';
 const Header = ({ title, subtitle, onBack, showBack = false }) => {
   return (
     <header style={{
-      padding: '1.25rem 0',
-      backgroundColor: 'var(--white)',
+      padding: '1rem 0',
+      backgroundColor: 'rgba(255, 255, 255, 0.8)',
+      backdropFilter: 'blur(12px)',
       borderBottom: '1px solid var(--border)',
       position: 'sticky',
       top: 0,
-      zIndex: 10,
-      boxShadow: '0 2px 4px rgba(0,0,0,0.02)'
+      zIndex: 100,
+      boxShadow: 'var(--shadow-sm)'
     }}>
       <div className="container" style={{ 
         display: 'flex', 

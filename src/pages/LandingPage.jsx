@@ -11,7 +11,7 @@ const LandingPage = ({ onSelectPath }) => {
       <div className="container" style={{ textAlign: 'center', paddingTop: '1rem' }}>
         <div style={{ marginBottom: '3rem' }} className="animate-fade-in">
           <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.5rem' }}>
-            <Logo size="large" />
+            <Logo size="large" layout="vertical" />
           </div>
           <h1 style={{ fontSize: '1.75rem', marginBottom: '0.75rem' }}>
             {ui.welcomeTitle}

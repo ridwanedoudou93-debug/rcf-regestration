@@ -1,65 +1,59 @@
 import React from 'react';
 import { company } from '../data/brand';
+import logoImg from '../assets/logo-rcf.png';
 
-const Logo = ({ size = 'medium', showText = true }) => {
+const Logo = ({ size = 'medium', showText = true, layout = 'horizontal' }) => {
   const sizes = {
-    small: { icon: 32, text: '1rem' },
-    medium: { icon: 48, text: '1.25rem' },
-    large: { icon: 64, text: '1.5rem' }
+    small: { icon: 40, text: '1.1rem', sub: '0.6rem' },
+    medium: { icon: 64, text: '1.4rem', sub: '0.75rem' },
+    large: { icon: 120, text: '2rem', sub: '1rem' }
   };
 
   const currentSize = sizes[size] || sizes.medium;
+  const isVertical = layout === 'vertical';
 
   return (
-    <div className="logo-container" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-      <div 
-        className="logo-icon"
+    <div 
+      className="logo-container" 
+      style={{ 
+        display: 'flex', 
+        flexDirection: isVertical ? 'column' : 'row',
+        alignItems: 'center', 
+        gap: isVertical ? '1rem' : '0.875rem',
+        textAlign: isVertical ? 'center' : 'right'
+      }}
+    >
+      <img 
+        src={logoImg} 
+        alt={company.nameEn}
         style={{
-          width: currentSize.icon,
+          width: 'auto',
           height: currentSize.icon,
-          backgroundColor: 'var(--primary-blue)',
-          borderRadius: '25%',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          color: 'white',
-          fontWeight: 'bold',
-          fontSize: currentSize.icon * 0.5,
-          fontFamily: 'var(--font-latin)',
-          boxShadow: 'var(--shadow)',
-          position: 'relative',
-          overflow: 'hidden'
+          maxWidth: '100%',
+          objectFit: 'contain',
+          filter: 'drop-shadow(0 4px 6px rgba(0,0,0,0.08))',
+          transition: 'transform 0.3s ease'
         }}
-      >
-        <span style={{ position: 'relative', zIndex: 1 }}>RCF</span>
-        {/* Subtle orange accent */}
-        <div style={{
-          position: 'absolute',
-          bottom: '-10%',
-          right: '-10%',
-          width: '50%',
-          height: '50%',
-          backgroundColor: 'var(--primary-orange)',
-          borderRadius: '50%',
-          opacity: 0.8
-        }} />
-      </div>
+        className="logo-image"
+      />
       
       {showText && (
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
           <span style={{ 
-            fontWeight: '700', 
+            fontWeight: '800', 
             fontSize: currentSize.text, 
             color: 'var(--primary-blue)',
-            lineHeight: 1.1,
+            lineHeight: 1,
+            letterSpacing: '-0.02em',
             fontFamily: 'var(--font-latin)'
           }}>
             {company.shortName}
           </span>
           <span style={{ 
-            fontSize: '0.65rem', 
-            color: 'var(--text-muted)',
-            fontWeight: '600'
+            fontSize: currentSize.sub, 
+            color: 'var(--primary-orange)',
+            fontWeight: '700',
+            whiteSpace: 'nowrap'
           }}>
             {company.nameAr}
           </span>
